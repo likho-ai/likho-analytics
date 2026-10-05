@@ -1,0 +1,9 @@
+/likho-analytics
+/likho-analytics.exe
+*.test
+coverage.out
+
+# Personal and secret settings on this machine; never committed.
+.env
+.env.local
+.env.*.local

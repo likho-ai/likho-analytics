@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    uses: likho-ai/likho-infra/.github/workflows/go-ci.yml@main
+    with:
+      stack-services: "nats clickhouse"
+
+  publish:
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    uses: likho-ai/likho-infra/.github/workflows/docker-publish.yml@main
+    permissions:
+      contents: read
+      packages: write
