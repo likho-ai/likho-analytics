@@ -393,7 +393,7 @@ func (s *Store) counts(ctx context.Context, query string, args []any) ([]Count, 
 	if err != nil {
 		return nil, fmt.Errorf("clickhouse: %w", err)
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []Count
 	for rows.Next() {
 		var c Count
@@ -436,7 +436,7 @@ func (s *Store) Timeseries(ctx context.Context, ws string, w Window, f Facts, me
 	if err != nil {
 		return nil, fmt.Errorf("clickhouse: timeseries: %w", err)
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	values := map[int64]float64{}
 	for rows.Next() {
 		var at time.Time
@@ -476,7 +476,7 @@ func (s *Store) Breakdown(ctx context.Context, ws string, w Window, f Facts, by 
 	if err != nil {
 		return nil, fmt.Errorf("clickhouse: breakdown: %w", err)
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []Row
 	for rows.Next() {
 		var r Row
