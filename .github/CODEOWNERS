@@ -1,2 +1,3 @@
-# Who reviews changes here (GitHub asks them on every pull request).
-* @sandeep-atiya
+# Who reviews changes here: GitHub asks them on every pull request, and a pull request into
+# staging or main needs the approval of one of them other than its author.
+* @sandeep-atiya @AdminAtiya

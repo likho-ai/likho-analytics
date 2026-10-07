@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [main, staging, development]
   pull_request:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
 
   publish:
     needs: ci
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'push'      # development, staging or main: the branch's image
     uses: likho-ai/likho-infra/.github/workflows/docker-publish.yml@main
     permissions:
       contents: read

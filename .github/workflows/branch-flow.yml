@@ -1,0 +1,12 @@
+# The branch model (likho-infra/.github/workflows/branch-flow.yml): feature -> development ->
+# staging -> main. A required check on all three branches.
+name: branch-flow
+
+on:
+  pull_request:
+    branches: [main, staging, development]
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  flow:
+    uses: likho-ai/likho-infra/.github/workflows/branch-flow.yml@main

@@ -1,0 +1,14 @@
+# After a release or a hotfix on main, a pull request merges main back into development
+# (likho-infra/.github/workflows/back-merge.yml).
+name: back-merge
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  back-merge:
+    uses: likho-ai/likho-infra/.github/workflows/back-merge.yml@main
+    permissions:
+      contents: read
+      pull-requests: write
