@@ -1,0 +1,27 @@
+# Dependabot here opens SECURITY updates only: a dependency with a published vulnerability gets
+# a pull request into development at once. Routine updates are Renovate's (renovate.json), so
+# open-pull-requests-limit: 0 turns Dependabot's own version updates off. Titles are Conventional
+# Commits, so a security fix shows in the changelog and makes a patch release.
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 0
+    target-branch: development
+    labels: [dependencies, security]
+    commit-message: { prefix: "fix(deps)", prefix-development: "chore(deps)" }
+  - package-ecosystem: docker
+    directory: "/"
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 0
+    target-branch: development
+    labels: [dependencies, security]
+    commit-message: { prefix: "fix(deps)", prefix-development: "chore(deps)" }
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 0
+    target-branch: development
+    labels: [dependencies, security]
+    commit-message: { prefix: "fix(deps)", prefix-development: "chore(deps)" }
