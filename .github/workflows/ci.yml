@@ -5,6 +5,10 @@ on:
     branches: [main, staging, development]
   pull_request:
 
+# The workflow's token reads the code and nothing more; a job that needs more says so itself.
+permissions:
+  contents: read
+
 jobs:
   ci:
     uses: likho-ai/likho-infra/.github/workflows/go-ci.yml@main
