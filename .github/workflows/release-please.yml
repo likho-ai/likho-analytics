@@ -1,0 +1,25 @@
+# Releases (likho-infra/.github/workflows/release-please.yml): a release pull request follows
+# main; merging it tags the version and makes the GitHub release, and this run builds it.
+# Commit titles say what changed: fix: (patch), feat: (minor), feat!: (breaking).
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release-please:
+    uses: likho-ai/likho-infra/.github/workflows/release-please.yml@main
+    permissions:
+      contents: write
+      pull-requests: write
+
+  image:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    uses: likho-ai/likho-infra/.github/workflows/docker-publish.yml@main
+    with:
+      version: ${{ needs.release-please.outputs.version }}
+    permissions:
+      contents: read
+      packages: write
